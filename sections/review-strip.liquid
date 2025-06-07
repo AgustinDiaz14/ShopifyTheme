@@ -1,0 +1,81 @@
+<div class="review-strip__container">
+    <div class="review-strip__left">
+        <span class="badge">{{ section.settings.badge_text }}</span>
+
+        <div class="star_container">
+            <div class="stars">
+                {% for i in (1..section.settings.star_count) %}
+                    <span>⭐</span>
+                {% endfor %}
+            </div>
+
+            <span class="review-count">{{ section.settings.review_text }}</span>
+        </div>
+    </div>
+
+    <span class="review-strip__divider"></span>
+
+    <div class="logo-review-container">
+        {% if section.blocks.size > 0 %}
+            {% for block in section.blocks %}
+                {% if block.settings.logo_image != blank %}
+                    <div class="logo-item">
+                        {{ block.settings.logo_image | image_url: width: 120 | image_tag: class: 'logo-image', alt: block.settings.logo_image.alt | default: 'Logo' }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "Review Strip",
+  "tag": "section",
+  "class": "review-strip",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "#1 Doctor Recommended"
+    },
+    {
+      "type": "range",
+      "id": "star_count",
+      "label": "Star count",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "review_text",
+      "label": "Review text",
+      "default": "12,000+ 5-star Reviews"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo_image",
+          "label": "Logo image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Review Strip",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}
