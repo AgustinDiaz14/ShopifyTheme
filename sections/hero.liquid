@@ -1,19 +1,35 @@
+{{ 'marquee.js' | asset_url | script_tag }}
 <section id="{{ section.id }}" class="hero-video">
-    {{ section.settings.video_file | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'hero-video__video' }}
+    <div>
+        {{ section.settings.video_file | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'hero-video__video' }}
 
-    {% if section.settings.show_overlay %}
-        <div class="hero-video__overlay" style="opacity: {{ section.settings.overlay_opacity }};"></div>
-    {% endif %}
-
-    <div class="hero-video__inner">
-        <h1 class="hero-video__heading">{{ section.settings.heading }}</h1>
-
-        {% if section.settings.cta_label != blank and section.settings.cta_link != blank %}
-            <a href="{{ section.settings.cta_link }}" class="hero-video__btn">
-                {{ section.settings.cta_label }}
-            </a>
+        {% if section.settings.show_overlay %}
+            <div class="hero-video__overlay" style="opacity: {{ section.settings.overlay_opacity }};"></div>
         {% endif %}
+
+        <div class="hero-video__inner">
+            <h1 class="hero-video__heading">{{ section.settings.heading }}</h1>
+
+            {% if section.settings.cta_label != blank and section.settings.cta_link != blank %}
+                <a href="{{ section.settings.cta_link }}" class="hero-video__btn">
+                    {{ section.settings.cta_label }}
+                </a>
+            {% endif %}
+        </div>
     </div>
+
+    <div class="hero-footer">
+        <div class="marquee">
+            <ul class="marquee__content" id="marquee-list">
+                {% for block in section.blocks limit: 4 %}
+                    <li class="marquee__item">{{ block.settings.text }}
+                    <span class="star">★</span></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+
 </section>
 
 {% schema %}
@@ -60,9 +76,29 @@
       "label": "Enlace del botón"
     }
   ],
+  "blocks": [
+    {
+      "type": "text_item",
+      "name": "Footer Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "High Quality Ingredients"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
   "presets": [
     {
-      "name": "Hero video"
+      "name": "Hero video",
+      "blocks": [
+        { "type": "text_item" },
+        { "type": "text_item" },
+        { "type": "text_item" }
+      ]
     }
   ]
 }

@@ -1,18 +1,19 @@
-/* ===== Hero video ===== */
 .hero-video {
     position: relative;
     width: 100%;
     height: 100vh;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: flex-end;
     box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
     .hero-video {
-        height: 75vh;               /* un poco más baja en móvil */
-        padding-bottom: 2.5rem;     /* 40 px */
+        height: 75vh;
+        padding-bottom: 2.5rem;
     }
 }
 
@@ -33,13 +34,15 @@
 }
 
 .hero-video__inner {
-    position: relative;
-    max-width: 48rem;             /* ≈ 768 px */
+    position: absolute;
+    bottom: 100px;
+    left: 30px;
+    max-width: 48rem;
 }
 
 .hero-video__heading {
     color: #fff;
-    font-size: 2.25rem;           /* 36 px */
+    font-size: 2.25rem;
     line-height: 1.1;
     font-weight: 700;
     margin: 0 0 1.5rem;
@@ -47,7 +50,7 @@
 
 @media (min-width: 768px) {
     .hero-video__heading {
-        font-size: 3.75rem;         /* 60 px */
+        font-size: 3.75rem;
     }
 }
 
@@ -56,7 +59,7 @@
     background: #ffffff;
     color: #000000;
     font-weight: 600;
-    padding: 0.75rem 2.5rem;      /* 12 × 40 px */
+    padding: 0.75rem 2.5rem;
     border-radius: 4px;
     text-decoration: none;
     transition: background .2s ease;
@@ -66,3 +69,49 @@
 .hero-video__btn:focus {
     background: #e5e5e5;
 }
+
+.hero-footer {
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+    padding: 0.5rem 0;
+    overflow: hidden;
+    position: relative;
+}
+.marquee {
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee__content {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    width: fit-content;
+    animation: marquee-scroll linear infinite;
+    --scroll-width: 1000px;
+}
+
+.marquee__item {
+    white-space: nowrap;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.star {
+    opacity: 0.5;
+}
+
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-1 * var(--scroll-width)));
+    }
+}
+
