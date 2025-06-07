@@ -1,19 +1,39 @@
 <header class="main-header">
     <nav class="navbar">
-        <a href="/" class="logo">UNCMFRT.COM</a>
+        <a href="{{ routes.root_url }}" class="logo">
+            {% if section.settings.logo != blank %}
+                {{ section.settings.logo | image_url: width: 160 | image_tag: class: 'main-header__logo-img', alt: section.settings.logo.alt | default: shop.name }}
+            {% else %}
+                {{ section.settings.logo_text }}
+            {% endif %}
+        </a>
 
-        <nav class="main-header__nav">
-            <ul>
-                <li><a href="/collections/all">Shop</a></li>
-                <li><a href="#">Science</a></li>
-                <li><a href="#">Podcasts</a></li>
-                <li><a href="#">Trainers</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-        </nav>
+        {% if section.settings.menu != blank %}
+            <nav class="main-header__nav">
+                <ul>
+                    {% for link in linklists[section.settings.menu].links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endif %}
 
         <div class="main-header__right">
-            <a href="#" class="main-header__btn">Men</a>
+            <div class="gender-toggle">
+                <input type="checkbox" id="gender-toggle-checkbox" class="gender-toggle__checkbox" hidden>
+
+                <label for="gender-toggle-checkbox" class="gender-toggle__label">
+                    <span class="gender-toggle__option gender-toggle__men">
+                        {{ section.settings.icon_men | image_url: width: 24 | image_tag}}
+                        <span>Men</span>
+                    </span>
+                    <span class="gender-toggle__option gender-toggle__women">
+                        {{ section.settings.icon_men | image_url: width: 24 | image_tag}}
+                        <span>Women</span>
+                    </span>
+                </label>
+            </div>
+
             <a href="#" class="main-header__btn main-header__btn--dark">Take The Quiz</a>
             <a href="/account" class="main-header__icon">👤</a>
             <a href="/cart" class="main-header__icon">🛒</a>
@@ -25,7 +45,33 @@
 {
   "name": "Header",
   "tag": "section",
-  "settings": [],
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Text Logo (used if no logo image is set)"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_men",
+      "label": "Men Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_women",
+      "label": "Women Icon"
+    }
+  ],
   "presets": [
     {
       "name": "Header"
@@ -33,3 +79,4 @@
   ]
 }
 {% endschema %}
+
