@@ -1,0 +1,23 @@
+<div class="debug">
+    Product card rendered for: {{ product.title | default: 'NO PRODUCT' }}
+</div>
+
+<div class="product-card">
+    {% if bestseller %}
+        <span class="badge badge--yellow">Bestseller</span>
+    {% endif %}
+    <div class="product-card__image">
+        {{ product.featured_image | image_url: width: 600 | image_tag: alt: product.title }}
+    </div>
+    <div class="product-card__info">
+        <h3>{{ product.title }}</h3>
+        {% assign badge_array = badges | split: ',' %}
+        <div class="badge-row">
+            {% for badge in badge_array %}
+                <span class="badge">{{ badge | strip }}</span>
+            {% endfor %}
+        </div>
+        <p>${{ product.price | money_without_trailing_zeros }}</p>
+        <button>Add – {{ product.price | money_without_trailing_zeros }}</button>
+    </div>
+</div>
