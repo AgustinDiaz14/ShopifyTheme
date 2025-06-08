@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const pixelsPerSecond = 60;
-    const duration = width / pixelsPerSecond;
+    const duration = width / pixelsPerSecond / 2;
 
     list.style.animationDuration = `${duration}s`;
     list.style.setProperty("--scroll-width", `${width}px`);
