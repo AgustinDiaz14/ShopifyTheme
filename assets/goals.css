@@ -1,0 +1,119 @@
+.goals-section {
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.goals-header {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.goals-pretitle {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.goals-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.goals-subtitle {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #555;
+    margin-top: 8px;
+    max-width: 350px;
+    height: auto;
+}
+
+.goals-grid {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.goal-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 288px;
+    height: 483px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 300ms ease;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.goal-image-wrapper {
+    width: 100%;
+    height: 392px;
+    overflow: hidden;
+}
+
+.goal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 1s ease;
+    display: block;
+}
+
+.goal-card:hover .goal-image {
+    transform: scale(1.1);
+}
+
+.goal-card:hover .flipped-image {
+    transform: scaleX(-1) scale(1.1);
+}
+
+.flipped-image {
+    transform: scaleX(-1);
+    transition: transform 300ms ease;
+}
+
+.arrow-icon {
+    width: 37px;
+    height: 37px;
+    transition: transform 0.3s ease;
+}
+
+.goal-card:hover .arrow-icon {
+    transform: rotate(45deg);
+}
+
+.goal-card-content {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.goal-card-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.goal-card-content p {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 16px 0;
+}
