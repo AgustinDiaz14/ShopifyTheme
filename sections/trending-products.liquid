@@ -1,28 +1,35 @@
 <section class="trending-products-section">
-    <div class="container">
-        {% assign categories = section.blocks | map: 'settings.category' | uniq %}
+  <div class="container">
 
-        {% for category_name in categories %}
-            <div class="category-section category-{{ category_name | handle }}">
-                <div class="category-header">
-                    <h2>{{ category_name }}</h2>
-                </div>
+    {%- assign categories = "" -%}
+    {%- for block in section.blocks -%}
+      {%- assign cat = block.settings.category | strip -%}
+      {%- unless categories contains cat -%}
+        {%- assign categories = categories | append: cat | append: "||" -%}
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- assign category_list = categories | split: "||" -%}
 
-                <div class="products-grid">
-                    {% for block in section.blocks %}
-                        {% if block.settings.category == category_name %}
-                            {% render 'product-card',
-                                    product: all_products[block.settings.product],
-                                    bestseller: block.settings.bestseller,
-                                    badges: block.settings.badges %}
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    {% for cat in category_list %}
+      <div>
+        <div class="category-header">
+          <h2>{{ cat }}</h2>
+        </div>
+
+        <div class="products-grid">
+          {% for block in section.blocks %}
+            {% if block.settings.category == cat %}
+              {% assign product = all_products[block.settings.product] %}
+              {% if product %}
+                {% render 'product-card', product: product %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
 </section>
-
 
 {% schema %}
 {
@@ -30,15 +37,9 @@
   "settings": [],
   "blocks": [
     {
-      "type": "product",
+      "type": "product_block",
       "name": "Product",
       "settings": [
-        {
-          "type": "text",
-          "id": "category",
-          "label": "Category",
-          "default": "Supplements"
-        },
         {
           "type": "product",
           "id": "product",
