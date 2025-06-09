@@ -1,5 +1,6 @@
 .trending-products-section {
     padding: 3rem 1rem;
+    background-color: #F6F6F5;
 }
 
 .trending-products-section .slider-header {
@@ -33,6 +34,7 @@
 
 .slider-title {
     text-align: center;
+    font-weight: normal;
 }
 
 .slider-title h3 {

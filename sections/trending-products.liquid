@@ -2,15 +2,15 @@
   <div class="container">
 
     <div class="slider-header">
-      <button class="slider-arrow" data-direction="prev">←</button>
+      <button class="slider-arrow" data-direction="prev">{{ 'left-arrow.svg' | asset_url | img_tag }}</button>
 
       <div class="slider-title">
-        <h3>✨ Trending</h3>
+        <h3>🌟 Trending</h3>
         <h2 class="slider-collection-title"></h2>
         <a href="#" class="slider-view-all">View All</a>
       </div>
 
-      <button class="slider-arrow" data-direction="next">→</button>
+      <button class="slider-arrow" data-direction="next">{{ 'right-arrow.svg' | asset_url | img_tag }}</button>
     </div>
 
     {% for block in section.blocks %}
@@ -38,11 +38,18 @@
             {% assign index = forloop.index0 %}
             {% assign product = all_products[product_handle] %}
             {% assign is_bestseller = bestseller_list[index] %}
+            {% assign is_bestseller = is_bestseller | downcase %}
+            {% if is_bestseller == 'true' %}
+              {% assign is_product_bestseller = true %}
+            {% else %}
+              {% assign is_product_bestseller = false %}
+            {% endif %}
+
 
             {% if product %}
               {% render 'product-card',
                       product: product,
-                      bestseller: is_bestseller %}
+                      bestseller: is_product_bestseller %}
             {% endif %}
           {% endfor %}
         </div>
