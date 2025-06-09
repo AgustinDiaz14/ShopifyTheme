@@ -1,0 +1,148 @@
+<section class="testimonial-carousel">
+    <div class="container">
+        <div class="carousel-header">
+            <button class="carousel-arrow" data-direction="prev">←</button>
+            <p class="subtitle">{{ section.settings.subtitle }}</p>
+            <h2 class="title">{{ section.settings.title }}</h2>
+            <button class="carousel-arrow" data-direction="next">→</button>
+            <a href="{{ section.settings.view_all_link }}" class="view-all-link">View All</a>
+        </div>
+
+        <div class="carousel-wrapper">
+            <div class="carousel-track">
+                {% for block in section.blocks %}
+                    <div class="testimonial-card">
+                        {% if block.settings.media %}
+                            <div class="media">
+                                {{ block.settings.media | video_tag: preview:true, loop: true, muted: true, controls: false }}
+                            </div>
+                        {% endif %}
+
+                        <div class="product-info">
+                            {% if block.settings.product %}
+                                {% assign product = all_products[block.settings.product] %}
+                                <div class="product-image-container">
+                                    <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}">
+                                </div>
+                                <div class="product-data-container">
+                                    <p>{{ product.title }}</p>
+                                    <p class="bold">{{ product.price | money }}</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.querySelector(".carousel-track");
+        const cards = carousel.querySelectorAll(".testimonial-card");
+        const prevBtn = document.querySelector('[data-direction="prev"]');
+        const nextBtn = document.querySelector('[data-direction="next"]');
+
+        let currentIndex = 0;
+        const cardWidth = cards[0].offsetWidth + 16;
+        let autoplayInterval;
+
+        function scrollToCard(index) {
+            carousel.scrollTo({
+                left: index * cardWidth,
+                behavior: "smooth"
+            });
+        }
+
+        function playCurrentVideo() {
+            const videos = carousel.querySelectorAll("video");
+            videos.forEach((vid, index) => {
+                if (index === currentIndex) {
+                    vid.play().catch(() => {});
+                } else {
+                    vid.pause();
+                }
+            });
+        }
+
+        function nextCard() {
+            currentIndex = (currentIndex + 1) % cards.length;
+            scrollToCard(currentIndex);
+            playCurrentVideo();
+        }
+
+        function prevCard() {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            scrollToCard(currentIndex);
+            playCurrentVideo();
+        }
+
+        nextBtn?.addEventListener("click", () => {
+            nextCard();
+            resetAutoplay();
+        });
+
+        prevBtn?.addEventListener("click", () => {
+            prevCard();
+            resetAutoplay();
+        });
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                nextCard();
+            }, 4000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        carousel.addEventListener("scroll", debounce(() => {
+            currentIndex = Math.round(carousel.scrollLeft / cardWidth);
+            playCurrentVideo();
+        }, 300));
+
+        function debounce(func, wait) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        startAutoplay();
+        playCurrentVideo();
+    });
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Testimonial Carousel",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Trusted & Proven by Science" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Real People. Real Results." },
+    { "type": "url", "id": "view_all_link", "label": "View All link" }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "video", "id": "media", "label": "Image or Video" },
+        { "type": "product", "id": "product", "label": "Related product" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Testimonial Carousel",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}
