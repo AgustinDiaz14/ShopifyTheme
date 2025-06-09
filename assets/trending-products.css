@@ -1,28 +1,69 @@
 .trending-products-section {
-    padding: 60px 20px;
-    background-color: #fafafa;
+    padding: 3rem 1rem;
 }
 
-.trending-products-section .container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.category-header {
+.trending-products-section .slider-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
 }
 
-.category-header h2 {
+.slider-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #1B1F231A;
+    border-radius: 8px;
+    background-color: #F5F5F5;
+    color: #111;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+.slider-arrow:hover {
+    background-color: #f3f4f6;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.slider-title {
+    text-align: center;
+}
+
+.slider-title h3 {
+    font-size: 1rem;
+    color: #888;
+    margin: 0;
+    letter-spacing: 0.05em;
+}
+
+.slider-title h2 {
     font-size: 2rem;
+    margin: 0.2rem 0 0.4rem;
     font-weight: 700;
+    text-transform: capitalize;
+}
+
+.slider-view-all {
+    font-size: 0.875rem;
+    text-decoration: underline;
+    color: #000;
+}
+
+.collection-section {
+    transition: opacity 0.3s ease;
 }
 
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
 }
-
