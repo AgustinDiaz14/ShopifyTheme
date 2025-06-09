@@ -75,7 +75,7 @@
 .gender-toggle__option img {
     background-color: white;
     padding: 0.5rem;
-    border-radius: calc(infinity * 1px);;
+    border-radius: calc(infinity * 1px);
     height: 24px;
     width: 24px;
 }

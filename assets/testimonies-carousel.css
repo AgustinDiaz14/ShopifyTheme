@@ -1,5 +1,6 @@
 .testimonial-carousel {
     padding: 4rem 0;
+    background-color: #F6F6F5;
 }
 
 .carousel-header {
@@ -9,24 +10,59 @@
     align-items: center;
 }
 
+.carousel-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.carousel-header-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
 .carousel-header .subtitle {
+    margin: 0;
     font-size: 0.9rem;
     text-transform: uppercase;
-    color: #666;
 }
 
 .carousel-header .title {
+    margin: 0;
     font-size: 2rem;
     font-weight: bold;
 }
 
+.view-all-link {
+    margin-top: 18px;
+}
+
 .carousel-track {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
     gap: 1rem;
     margin-top: 2rem;
+    padding: 20px;
 }
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.carousel-track {
+    pointer-events: none;
+}
+
+.carousel-track > .product-info {
+    pointer-events: auto;
+}
+
 
 .testimonial-card {
     flex: 0 0 auto;
@@ -35,8 +71,11 @@
     background: white;
     border-radius: 8px;
     overflow: hidden;
-    margin-right: 5px;
-    margin-left: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .testimonial-card .media {
@@ -46,21 +85,45 @@
     border-radius: 8px;
     background: black;
 }
-.testimonial-card .media video {
+
+.testimonial-card {
+    width: 300px;
+    border-radius: 8px;
+    overflow: visible;
+    outline: none;
+    border: none;
+}
+
+.testimonial-card-inner {
+    border-radius: 8px;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card.active .testimonial-card-inner {
+    transform: scale(1.1);
+    z-index: 1;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+    outline: none;
+    border: none;
+}
+
+.testimonial-card video {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-}
-
-
-.carousel-arrow {
-    background: none;
+    background-color: black;
     border: none;
-    font-size: 2rem;
+    outline: none;
+    margin: 0;
+    padding: 0;
 }
 
 .product-info {
+    background: white;
     padding: 1rem;
     height: 80px;
     width: 100%;
@@ -96,4 +159,20 @@
 .product-info img {
     width: 50px;
     height: 50px;
+}
+
+.product-info button {
+    background: black;
+    font-weight: lighter;
+    border: none;
+    font-size: x-large;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    border-radius: calc(infinity * 1px);
+    width: 32px;
+    height: 32px;
 }
