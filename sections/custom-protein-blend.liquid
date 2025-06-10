@@ -1,0 +1,153 @@
+<section class="custom-protein-section">
+    <div class="text-center flex-column custom-protein-header">
+        <p>Simple & Effective Ingredients</p>
+        <h2 class="title">Customized Protein Powder</h2>
+    </div>
+    <div class="blend-card">
+
+        {% for block in section.blocks %}
+            {% if block.type == 'product_block' and block.settings.product != blank %}
+                {% assign prod = all_products[block.settings.product] %}
+                <div class="blend-box">
+                    <div class="blend-image">
+                        {% if prod.featured_image != blank %}
+                            <img src="{{ prod.featured_image | image_url }}" alt="{{ prod.title }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="blend-info-container">
+                        <div class="flex-column ingredients-container bg-black">
+                            <h3 class="white-text">The Blend</h3>
+                            <div class="blend-ingredients">
+                                {% if block.settings.title_1 != blank %}
+                                    <div class="subsection">
+                                        <div class="leaf-container white-leaf">
+                                            {{ 'leaves.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                        </div>
+
+                                        <h4 class="white-text">{{ block.settings.title_1 }}</h4>
+                                    </div>
+                                {% endif %}
+
+                                {% if block.settings.title_2 != blank %}
+                                    <div class="subsection">
+                                        <div class="leaf-container white-leaf">
+                                            {{ 'leaves.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                        </div>
+                                        <h4 class="white-text">{{ block.settings.title_2 }}</h4>
+                                    </div>
+                                {% endif %}
+
+                                {% if block.settings.title_3 != blank %}
+                                    <div class="subsection">
+                                        <div class="leaf-container white-leaf">
+                                            {{ 'leaves.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                        </div>
+                                        <h4 class="white-text">{{ block.settings.title_3 }}</h4>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="blend-description">
+                            {% if block.settings. description_1 != blank%}
+                                <div class="description-subsection">
+                                    <div class="leaf-container black-leaf">
+                                        {{ 'leaves-black.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                    </div>
+                                    <p class="description-text">{{ block.settings.description_1 }}</p>
+                                </div>
+
+                            {% endif %}
+
+                            {% if block.settings.description_2 != blank %}
+                                <div class="description-subsection">
+                                    <div class="leaf-container black-leaf">
+                                        {{ 'leaves-black.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                    </div>
+                                    <p class="description-text">{{ block.settings.description_2 }}</p>
+                                </div>
+                            {% endif %}
+
+                            {% if block.settings.description_3 != blank %}
+                                <div class="description-subsection">
+                                    <div class="leaf-container black-leaf">
+                                        {{ 'leaves-black.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                    </div>
+                                    <p class="description-text">{{ block.settings.description_3 }}</p>
+                                </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+</section>
+
+
+{% schema %}
+{
+  "name": "Custom Protein Blend",
+  "tag": "section",
+  "class": "custom-protein-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de la sección",
+      "default": "Customized Protein Powder"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_block",
+      "name": "Producto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Producto"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Título 1"
+        },
+        {
+          "type": "textarea",
+          "id": "description_1",
+          "label": "Descripción 1"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Título 2"
+        },
+        {
+          "type": "textarea",
+          "id": "description_2",
+          "label": "Descripción 2"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Título 3"
+        },
+        {
+          "type": "textarea",
+          "id": "description_3",
+          "label": "Descripción 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Protein Blend",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
