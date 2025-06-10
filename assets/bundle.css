@@ -1,0 +1,57 @@
+.bundle-products-section {
+    padding: 3rem 1rem;
+    background-color: white;
+}
+
+.bundle-products-section .slider-header {
+    display: flex;
+    padding-right: 40px;
+    padding-left: 40px;
+    max-width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    gap: 133px;
+}
+
+.bundle-nav-link {
+    color: black;
+}
+
+.bundle-slider-title-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: start;
+}
+.bundle-slider-title-container p, h2 {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.bundle-collection-container {
+    flex: 1;
+}
+
+.bundle-slider-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: row;
+}
+
+.bundle-collection-section {
+    transition: opacity 0.3s ease;
+}
+
+.bundle-products-grid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
