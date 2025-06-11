@@ -60,3 +60,31 @@
     height: 100%;
     object-fit: cover;
 }
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .gallery-social-network {
+        padding: 10px;
+        box-sizing: border-box;
+        grid-column: span 1;
+    }
+
+    .social-network-header p {
+        font-size: 18px;
+    }
+
+    .social-network-logo {
+        height: 50px;
+        width: 50px;
+    }
+
+    .gallery-social-network a {
+        padding: 10px 30px;
+        font-size: 12px;
+    }
+
+
+}
