@@ -11,11 +11,27 @@ html, body {
     text-align: center;
 }
 
-.flex-column {
+.flex {
     display: flex;
+    flex-direction: row;
+}
+
+.flex-column {
     flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
 }
 
 .bg-black {
     background-color: black;
+}
+
+.bg-white {
+    background-color: white;
 }
