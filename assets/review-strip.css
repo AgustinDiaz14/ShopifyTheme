@@ -79,8 +79,42 @@
     margin: 0 20px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .review-strip__divider {
         display: none;
+    }
+
+    .review-strip__container {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .review-strip__left {
+        align-items: center;
+    }
+
+    .badge {
+        font-size: 12px;
+    }
+
+    .star_container {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .logo-review-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .logo-item {
+        width: 100px;
+        height: 36px;
+    }
+
+    .logo-item img {
+        height: 10px;
     }
 }

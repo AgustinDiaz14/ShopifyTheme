@@ -20,7 +20,7 @@
             {% for block in section.blocks %}
                 {% if block.settings.logo_image != blank %}
                     <div class="logo-item">
-                        {{ block.settings.logo_image | image_url: width: 120 | image_tag: class: 'logo-image', alt: block.settings.logo_image.alt | default: 'Logo' }}
+                        {{ block.settings.logo_image | image_url: width: 120 | image_tag: class: 'logo-image', alt: block.settings.logo_image.alt | default: 'Logo', role: 'img', aria-label: block.settings.logo_image.alt | default: 'Logo' }}
                     </div>
                 {% endif %}
             {% endfor %}
