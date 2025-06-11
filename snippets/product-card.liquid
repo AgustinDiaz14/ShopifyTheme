@@ -1,6 +1,6 @@
 <div class="product-card">
-    {% if bestseller %}
-        <span class="badge">Bestseller</span>
+    {% if badge != "" %}
+        <span class="product-badge">{{ badge }}</span>
     {% endif %}
 
     <div class="product-card__image">

@@ -17,41 +17,24 @@
       {% assign collection = block.settings.collection %}
       <div class="collection-section" data-title="{{ collection.title | escape }}" style="display: none;">
         <div class="products-grid">
-          {% assign selected_products = '' %}
-          {% assign selected_bestsellers = '' %}
-
           {% for i in (1..4) %}
             {% assign product_id = 'product_' | append: i %}
-            {% assign bestseller_id = 'bestseller_' | append: i %}
+            {% assign badge_id = 'badge_' | append: i %}
             {% assign handle = block.settings[product_id] %}
+            {% assign badge = block.settings[badge_id] %}
 
             {% if handle != blank %}
-              {% assign selected_products = selected_products | append: handle | append: ',' %}
-              {% assign selected_bestsellers = selected_bestsellers | append: block.settings[bestseller_id] | append: ',' %}
+              {% assign product = all_products[handle] %}
+
+              {% if product %}
+                {% render 'product-card',
+                        product: product,
+                        badge: badge %}
+              {% endif %}
             {% endif %}
           {% endfor %}
 
-          {% assign product_list = selected_products | split: ',' %}
-          {% assign bestseller_list = selected_bestsellers | split: ',' %}
 
-          {% for product_handle in product_list %}
-            {% assign index = forloop.index0 %}
-            {% assign product = all_products[product_handle] %}
-            {% assign is_bestseller = bestseller_list[index] %}
-            {% assign is_bestseller = is_bestseller | downcase %}
-            {% if is_bestseller == 'true' %}
-              {% assign is_product_bestseller = true %}
-            {% else %}
-              {% assign is_product_bestseller = false %}
-            {% endif %}
-
-
-            {% if product %}
-              {% render 'product-card',
-                      product: product,
-                      bestseller: is_product_bestseller %}
-            {% endif %}
-          {% endfor %}
         </div>
       </div>
     {% endfor %}
@@ -80,10 +63,9 @@
           "label": "Product 1"
         },
         {
-          "type": "checkbox",
-          "id": "bestseller_1",
-          "label": "Bestseller for Product 1",
-          "default": false
+          "type": "text",
+          "id": "badge_1",
+          "label": "Badge for Product 1"
         },
         {
           "type": "product",
@@ -91,10 +73,9 @@
           "label": "Product 2"
         },
         {
-          "type": "checkbox",
-          "id": "bestseller_2",
-          "label": "Bestseller for Product 2",
-          "default": false
+          "type": "text",
+          "id": "badge_2",
+          "label": "Badge for Product 2"
         },
         {
           "type": "product",
@@ -102,10 +83,9 @@
           "label": "Product 3"
         },
         {
-          "type": "checkbox",
-          "id": "bestseller_3",
-          "label": "Bestseller for Product 3",
-          "default": false
+          "type": "text",
+          "id": "badge_3",
+          "label": "Badge for Product 3"
         },
         {
           "type": "product",
@@ -113,10 +93,9 @@
           "label": "Product 4"
         },
         {
-          "type": "checkbox",
-          "id": "bestseller_4",
-          "label": "Bestseller for Product 4",
-          "default": false
+          "type": "text",
+          "id": "badge_4",
+          "label": "Badge for Product 4"
         }
       ]
     }
@@ -129,6 +108,7 @@
   ]
 }
 {% endschema %}
+
 
 
 
