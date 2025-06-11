@@ -3,6 +3,10 @@
     background-color: white;
 }
 
+.slider-header {
+    gap: 133px;
+}
+
 .bundle-products-section .slider-header {
     display: flex;
     padding-right: 40px;
@@ -11,7 +15,6 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2rem;
-    gap: 133px;
 }
 
 .bundle-nav-link {
@@ -57,11 +60,14 @@
 }
 
 @media (max-width: 768px) {
+    .bundle-products-section {
+        padding: 1rem 0 0;
+    }
+
     .slider-header {
-        display: grid;
-        grid-template-columns: minmax(200px, 1fr);
-        align-items: center;
-        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
     .bundle-products-grid {
         flex-direction: column;

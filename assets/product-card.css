@@ -8,6 +8,7 @@
     text-align: center;
     height: 505px;
     width: 365px;
+    box-sizing: border-box;
 }
 
 .product-badge {

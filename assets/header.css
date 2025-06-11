@@ -149,7 +149,7 @@
 }
 
 /* Mobile and tablet */
-@media (max-width: 1024px) {
+@media (max-width: 1500px) {
     .hamburger {
         position: absolute;
         top: 1rem;
@@ -219,5 +219,12 @@
         width: 100%;
         padding: 0 20px;
         gap: 10px;
+    }
+}
+
+@media (max-width: 767px) {
+    .main-header__right {
+        flex-direction: column;
+        padding: 0;
     }
 }
