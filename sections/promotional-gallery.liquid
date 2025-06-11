@@ -1,0 +1,73 @@
+<section class="promotional-gallery">
+    <div class="gallery-grid">
+        <div class="gallery-social-network flex flex-column justify-center items-center" >
+            <div class="flex flex-column justify-center">
+                <div class="flex items-center social-network-header">
+                    <img
+                            src="{% if section.settings.logo %}{{ section.settings.logo | image_url: width: 100 }}{% else %}{{ 'Logo.svg' | asset_url }}{% endif %}"
+                            alt="Logo"
+                            loading="lazy"
+                            class="social-network-logo"
+                    >
+                    <p>{{ section.settings.social_network_profile_name }}</p>
+                </div>
+                <a href="{{ section.settings.social_network_url }}">Follow us on {{ section.settings.social_network_handle }}</a>
+            </div>
+        </div>
+        {% for block in section.blocks %}
+            {% if block.settings.image %}
+                <div class="gallery-item">
+                    <img src="{{ block.settings.image | image_url: width: 600 }}" alt="Gallery image" loading="lazy" />
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Selectable Gallery",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "social_network_handle",
+      "label": "Social Network Handle",
+      "default": "Instagram"
+    },
+    {
+      "type": "text",
+      "id": "social_network_profile_name",
+      "label": "Social Network Profile Name"
+    },
+    {
+      "type": "url",
+      "id": "social_network_url",
+      "label": "Social Network Profile URL"
+    }
+  ],
+  "max_blocks": 12,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Gallery Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Selectable Gallery"
+    }
+  ]
+}
+{% endschema %}
