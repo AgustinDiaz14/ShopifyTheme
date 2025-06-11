@@ -141,17 +141,44 @@
     opacity: 60%;
 }
 
-@media (min-width: 768px) {
-    .active-ingredients {
-        flex-direction: row;
-        justify-content: space-between;
+@media (max-width: 1024px) {
+    .blend-card {
+        height: auto;
+    }
+    .blend-box {
+        flex-direction: column;
+    }
+
+    .blend-description {
+        margin-top: 20px;
+        border:none;
     }
 }
 
-@media (min-width: 768px) {
-    .blend-grid {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+@media (max-width: 768px) {
+    .blend-image {
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 0;
+    }
+
+    .blend-ingredients {
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .blend-description {
+        flex-direction: column;
+        padding: 20px;
+        border: none;
+    }
+
+    .blend-info-container {
+        width: 100%;
+    }
+
+    .custom-protein-section {
+        padding: 0;
     }
 }
