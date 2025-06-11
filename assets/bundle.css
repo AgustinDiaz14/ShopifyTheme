@@ -55,3 +55,16 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
 }
+
+@media (max-width: 768px) {
+    .slider-header {
+        display: grid;
+        grid-template-columns: minmax(200px, 1fr);
+        align-items: center;
+        gap: 20px;
+    }
+    .bundle-products-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
