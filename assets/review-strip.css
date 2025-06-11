@@ -79,7 +79,7 @@
     margin: 0 20px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1750px) {
     .review-strip__divider {
         display: none;
     }
