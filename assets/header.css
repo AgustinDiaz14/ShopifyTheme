@@ -1,7 +1,8 @@
 .main-header {
-    position: fixed;
+    position: absolute;
     display: flex;
     align-items: center;
+    box-sizing: border-box;
     padding: 1rem 2rem;
     justify-content: center;
     z-index: 10;
@@ -14,9 +15,24 @@
     border-radius: 8px;
     width: 75%;
     background-color: white;
-    padding: 24px 20px;
+    height: 70px;
+    padding: 0 24px;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.hamburger {
+    display: none;
+}
+
+.main-header__nav {
+    display: block !important;
+}
+
+.main-header__nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
 }
 
 .logo {
@@ -24,6 +40,32 @@
     font-size: 1.25rem;
     text-decoration: none;
     color: #000;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+}
+
+.search-logo {
+    height: 30px;
+    width: 30px;
+    object-fit: contain;
+    display: block;
+}
+
+.main-header__icon {
+    height: 30px;
+    width: 30px;
 }
 
 .main-header__nav ul {
@@ -104,4 +146,78 @@
 
 .main-header__logo-img {
     max-height: 40px;
+}
+
+/* Mobile and tablet */
+@media (max-width: 1024px) {
+    .hamburger {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 28px;
+        height: 24px;
+        cursor: pointer;
+        color: black;
+        z-index: 50;
+    }
+
+    .hamburger span {
+        display: block;
+        height: 3px;
+        background-color: #000;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .menu-toggle:checked ~ .navbar{
+        right: 0;
+    }
+
+    .menu-toggle:checked + .hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle:checked + .hamburger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked + .hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .navbar {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 65%;
+        border-radius: 0;
+        height: 100%;
+        z-index: 20;
+        padding: 20px;
+        box-sizing: border-box;
+        transition: 1s ease-out;
+    }
+
+    .navbar a {
+        width: 100%;
+    }
+
+    .main-header__nav {
+        width: 100%;
+    }
+
+    .main-header__nav ul {
+        flex-direction: column;
+    }
+
+    .main-header__right {
+        width: 100%;
+        padding: 0 20px;
+        gap: 10px;
+    }
 }

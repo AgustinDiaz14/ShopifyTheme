@@ -1,5 +1,12 @@
 <header class="main-header">
+    <input type="checkbox" id="menu-toggle" class="menu-toggle" hidden>
+    <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
     <nav class="navbar">
+
         <a href="{{ routes.root_url }}" class="logo">
             {% if section.settings.logo != blank %}
                 {{ section.settings.logo | image_url: width: 160 | image_tag: class: 'main-header__logo-img', alt: section.settings.logo.alt | default: shop.name }}
@@ -9,19 +16,23 @@
         </a>
 
         {% if section.settings.menu != blank %}
-            <nav class="main-header__nav">
+            <div class="main-header__nav">
                 <ul>
+                    <li>
+                        <a href="#" class="menu-link">
+                            <img src="{{ 'search-logo.svg' | asset_url }}" class="search-logo" alt="Search"/>
+                        </a>
+                    </li>
                     {% for link in linklists[section.settings.menu].links %}
-                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                        <li class="menu-item"><a class="menu-link" href="{{ link.url }}">{{ link.title }}</a></li>
                     {% endfor %}
                 </ul>
-            </nav>
+            </div>
         {% endif %}
 
         <div class="main-header__right">
             <div class="gender-toggle">
                 <input type="checkbox" id="gender-toggle-checkbox" class="gender-toggle__checkbox" hidden>
-
                 <label for="gender-toggle-checkbox" class="gender-toggle__label">
                     <span class="gender-toggle__option gender-toggle__men">
                         {{ section.settings.icon_men | image_url: width: 24 | image_tag}}
@@ -35,11 +46,16 @@
             </div>
 
             <a href="#" class="main-header__btn main-header__btn--dark">Take The Quiz</a>
-            <a href="/account" class="main-header__icon">👤</a>
-            <a href="/cart" class="main-header__icon">🛒</a>
+            <a href="/#" class="main-header__icon">
+                <img src="{{ 'person-icon.svg' | asset_url }}" alt="Person Icon" >
+            </a>
+            <a href="/#" class="main-header__icon">
+                <img src="{{ 'cart-icon.svg' | asset_url }}" alt="Person Icon">
+            </a>
         </div>
     </nav>
 </header>
+
 
 {% schema %}
 {
