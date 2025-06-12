@@ -38,7 +38,7 @@
 }
 
 .slider-button:hover {
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.10);
 }
 
 .slider-button.prev {
