@@ -4,14 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('quick-view-form');
 
     const qtyInput = document.getElementById('quick-view-qty');
-    const priceOutput = document.getElementById('quick-view-price');
     const variantIdInput = document.getElementById('quick-view-variant-id');
 
     let totalQuantity = 1;
 
     let totalPrice = {};
 
-    let selectedVariant = null;
 
     // Open modal from any product
     document.querySelectorAll('[data-quick-view]').forEach(button => {
