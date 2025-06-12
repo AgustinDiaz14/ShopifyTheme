@@ -34,16 +34,19 @@
             <div class="gender-toggle">
                 <input type="checkbox" id="gender-toggle-checkbox" class="gender-toggle__checkbox" hidden>
                 <label for="gender-toggle-checkbox" class="gender-toggle__label">
-                    <span class="gender-toggle__option gender-toggle__men">
-                        {{ section.settings.icon_men | image_url: width: 24 | image_tag}}
-                        <span>Men</span>
-                    </span>
-                    <span class="gender-toggle__option gender-toggle__women">
-                        {{ section.settings.icon_men | image_url: width: 24 | image_tag}}
-                        <span>Women</span>
+                    <span class="gender-toggle__content">
+                        <span class="gender-toggle__icon icon-men">
+                            <img src="{{ section.settings.icon_men | image_url: width: 24 }}" alt="Men">
+                        </span>
+                        <span class="gender-toggle__text gender-men">MEN</span>
+                        <span class="gender-toggle__icon icon-women">
+                            <img src="{{ section.settings.icon_women | image_url: width: 24 }}" alt="Women">
+                        </span>
+                        <span class="gender-toggle__text gender-women">WOMEN</span>
                     </span>
                 </label>
             </div>
+
 
             <a href="#" class="main-header__btn main-header__btn--dark">Take The Quiz</a>
             <a href="/#" class="main-header__icon">
