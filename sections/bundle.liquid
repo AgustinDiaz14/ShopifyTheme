@@ -3,21 +3,26 @@
 
         <div class="slider-header">
             <div class="bundle-slider-title-container">
-                <p>📦 Goals Specific</p>
-                <h2>Bundles</h2>
+                <p>{{ 'bundle.title_icon' | t }}</p>
+                <h2>{{ 'bundle.title_heading' | t }}</h2>
             </div>
+
             <div class="bundle-collection-container">
                 {% for block in section.blocks %}
                     {% assign collection = block.settings.collection %}
-                        <a href="{{ block.settings.link }}" target="_blank" class="bundle-nav-link">{{ collection.title }}</a>
+                    <a href="{{ block.settings.link }}" target="_blank" class="bundle-nav-link">{{ collection.title }}</a>
                 {% endfor %}
             </div>
-            <div class="bundle-slider-nav">
-                <a href="#">View All Bundles</a>
-                <button class="slider-arrow" data-direction="prev">{{ 'left-arrow.svg' | asset_url | img_tag }}</button>
-                <button class="slider-arrow" data-direction="next">{{ 'right-arrow.svg' | asset_url | img_tag }}</button>
-            </div>
 
+            <div class="bundle-slider-nav">
+                <a href="#">{{ 'bundle.view_all' | t }}</a>
+                <button class="slider-arrow" data-direction="prev" aria-label="{{ 'bundle.slider_prev_aria' | t }}">
+                    {{ 'left-arrow.svg' | asset_url | img_tag }}
+                </button>
+                <button class="slider-arrow" data-direction="next" aria-label="{{ 'bundle.slider_next_aria' | t }}">
+                    {{ 'right-arrow.svg' | asset_url | img_tag }}
+                </button>
+            </div>
         </div>
 
         {% for block in section.blocks %}

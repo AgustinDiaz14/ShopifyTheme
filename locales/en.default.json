@@ -1,0 +1,38 @@
+{
+  "blogs": {
+    "title_icon": "✍️ Blogs",
+    "title_heading": "Latest Articles",
+    "view_all": "View All"
+  },
+  "bundle": {
+    "title_icon": "📦 Goals Specific",
+    "title_heading": "Bundles",
+    "view_all": "View All Bundles",
+    "slider_prev_aria": "Previous bundle",
+    "slider_next_aria": "Next bundle"
+  },
+  "protein": {
+    "section_subtitle": "Simple & Effective Ingredients",
+    "section_title": "Customized Protein Powder",
+    "slider_prev_aria": "Previous blend",
+    "slider_next_aria": "Next blend"
+  },
+
+  "footer": {
+    "newsletter_heading": "Be a Part of Our Journey",
+    "newsletter_description": "Welcome to UNCMFRT. Sign up for exclusive content and we'll send you 10% off.",
+    "subscribe_button": "Subscribe",
+
+    "column_about": "About Us",
+    "column_support": "Support",
+    "column_links": "Important Link",
+    "column_legal": "Legal",
+    "column_contact": "Contact Us",
+    "column_connect": "Connect With Us",
+    "contact_helper": "Let Us Help You",
+
+    "bottom_copyright": "© uncmfrt.com. All rights reserved.",
+    "bottom_made_with": "Made with ❤️ and ☕ by Arctic Grey"
+  }
+
+}

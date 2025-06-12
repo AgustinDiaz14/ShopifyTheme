@@ -1,6 +1,7 @@
 .custom-footer {
     background: #F6F6F5;
-    padding: 40px 20px;
+    padding: 40px;
+    box-sizing: border-box;
     font-size: 14px;
 }
 

@@ -1,10 +1,12 @@
 <section class="custom-protein-section">
     <div class="text-center flex-column custom-protein-header">
-        <p>Simple & Effective Ingredients</p>
-        <h2 class="title">Customized Protein Powder</h2>
+        <p>{{ 'protein.section_subtitle' | t }}</p>
+        <h2 class="title">{{ 'protein.section_title' | t }}</h2>
     </div>
     <div class="navigation-blend-wrapper">
-        <button class="slider-button prev" onclick="blendSliderInstance.goPrev()">{{ 'left-arrow.svg' | asset_url | img_tag }}</button>
+        <button class="slider-button prev" onclick="blendSliderInstance.goPrev()" aria-label="{{ 'protein.slider_prev_aria' | t }}">
+            {{ 'left-arrow.svg' | asset_url | img_tag }}
+        </button>
         <div class="blend-slider-wrapper">
             <div class="blend-slider-track">
                 {% for block in section.blocks %}
@@ -89,7 +91,9 @@
                 {% endfor %}
             </div>
         </div>
-        <button class="slider-button next" onclick="blendSliderInstance.goNext()">{{ 'right-arrow.svg' | asset_url | img_tag }}</button>
+        <button class="slider-button next" onclick="blendSliderInstance.goNext()" aria-label="{{ 'protein.slider_next_aria' | t }}">
+            {{ 'right-arrow.svg' | asset_url | img_tag }}
+        </button>
     </div>
 
 
