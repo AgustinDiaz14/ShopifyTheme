@@ -12,11 +12,90 @@
     margin-bottom: 52px;
 }
 
+.navigation-blend-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+.slider-button {
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #1B1F231A;
+    border-radius: 8px;
+    background-color: #F5F5F5;
+    color: #111;
+    font-size: 1.5rem;
+    transition: all 0.2s ease;
+}
+
+.slider-button:hover {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.slider-button.prev {
+    margin-right: 16px;
+}
+
+.slider-button.next {
+    margin-left: 16px;
+}
+
+.blend-slider-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.blend-slider-track {
+    display: flex;
+    transition: transform 0.4s ease;
+    width: 100%;
+}
+
+.blend-box {
+    flex: 0 0 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #bbb;
+    transition: background 0.3s;
+}
+
+.dot.active {
+    background-color: black;
+}
+
+
+
 .blend-card {
     height: 548px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     max-width: 100%;
+    background-color: white;
     align-items: center;
     border: solid 1px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -121,16 +200,6 @@
     border-left: solid 1px rgba(0, 0, 0, 0.1);
 }
 
-.blend-box {
-    display: flex;
-    flex-direction: row;
-    background-color: white;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
 .white-text {
     color: white;
 }
@@ -142,10 +211,11 @@
 }
 
 @media (max-width: 1024px) {
+    .slider-button {
+        display: none;
+    }
     .blend-card {
         height: auto;
-    }
-    .blend-box {
         flex-direction: column;
     }
 
