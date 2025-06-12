@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ 'blogs.css' | asset_url }}">
     <link rel="stylesheet" href="{{ 'promotional-gallery.css' | asset_url }}">
     <link rel="stylesheet" href="{{ 'modal.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
 
 </head>
 <body>
@@ -29,5 +30,7 @@
 {{ content_for_layout }}
 {{ 'quick-view.js' | asset_url | script_tag }}
 {% render 'modal' %}
+
+{% section 'footer' %}
 </body>
 </html>
