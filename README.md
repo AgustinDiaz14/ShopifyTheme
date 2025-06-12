@@ -71,6 +71,9 @@ Once uploaded:
 ### 4. **Mobile-First Approach**
 - Components were designed and tested first on mobile, then expanded with media queries
 
+### 5. **Video Controls**
+- Custom video controls were not implemented as per the design request are not clear. I stick to the given design placing an autoplaying video but muted.
+
 ---
 
 ## 🧰 Framework & Libraries
