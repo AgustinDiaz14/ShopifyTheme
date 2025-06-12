@@ -27,7 +27,7 @@
                             {% endif %}
                         </div>
 
-                        <div class="product-info">
+                        <div class="testimonial-product-info">
                             {% if block.settings.product %}
                                 {% assign product = all_products[block.settings.product] %}
                                 <div class="product-image-container">
@@ -37,6 +37,7 @@
                                     <p>{{ product.title }}</p>
                                     <p class="bold">{{ product.price | money }}</p>
                                 </div>
+                                {% comment %}As not specidied in design, this buttons remains IDLE. Maybe an auxiliar modal could be usefull{% endcomment %}
                                 <button>+</button>
                             {% endif %}
                         </div>

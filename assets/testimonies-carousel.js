@@ -73,25 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return closestIndex;
     }
 
-    function handleVideoEnded(index) {
-        if (index + 1 >= videos.length) return;
-
-        currentIndex = index + 1;
-
-        const isCentered = getCenteredCardIndex() === index;
-
-        if (isCentered) {
-            scrollToCard(currentIndex);
-            setTimeout(() => highlightAndPlay(currentIndex), 400);
-        } else {
-            highlightAndPlay(currentIndex);
-        }
-    }
-
-    videos.forEach((video, i) => {
-        video.addEventListener("ended", () => handleVideoEnded(i));
-    });
-
     window.addEventListener("load", () => {
         scrollToCard(0, true);
         highlightAndPlay(0);
