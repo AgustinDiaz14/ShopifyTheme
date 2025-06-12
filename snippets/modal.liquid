@@ -50,17 +50,31 @@
                 </template>
 
 
-
-
+                {% comment %}As I am not sure of this implementation based on the design, I just hardcoded it{% endcomment %}
                 <div class="purchase-options">
-                    <label>
-                        <input type="radio" name="purchase_type" checked />
-                        One-Time Purchase
-                    </label>
-                    <label>
-                        <input type="radio" name="purchase_type" />
-                        Subscribe & Save
-                    </label>
+                    <div class="option-container">
+                        <div class="flex flex-column">
+                            <label>
+                                <input type="radio" name="purchase_type" checked />
+                                One-Time Purchase
+                            </label>
+                            <p class="price-text">$49.95</p>
+                            <p class="auxiliary-text">Delivery Every 2 Months</p>
+                        </div>
+                    </div>
+                    <div class="option-container">
+                        <div class="flex flex-column">
+                            <label>
+                                <input type="radio" name="purchase_type" checked />
+                                Subscribe & Save
+                            </label>
+                            <div class="flex items-center">
+                                <p class="price-text">$39.96</p>
+                                <p class="discount-text">Save 10%</p>
+                            </div>
+                            <p class="auxiliary-text">Delivery Every 2 Months</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="quantity-controls">
