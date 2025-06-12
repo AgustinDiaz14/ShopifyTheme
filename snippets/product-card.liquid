@@ -18,5 +18,8 @@
         <h3>{{ product.title }}</h3>
     </div>
 
-    <button data-quick-view="{{ product.handle }}">Quick View</button>
+    <button
+        data-quick-view="{{ product.handle }}"
+        data-product={{ product }}
+    >Quick View</button>
 </div>

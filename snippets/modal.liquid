@@ -1,15 +1,81 @@
-<div id="quick-view-modal" class="quick-view-modal" hidden>
-    <div class="quick-view-content">
-        <button class="close-modal">×</button>
-        <div class="modal-body">
-            <img id="quick-view-image" src="" alt="" />
-            <h2 id="quick-view-title"></h2>
-            <p id="quick-view-price"></p>
-            <p id="quick-view-description"></p>
-            <form id="quick-view-form">
-                <input type="hidden" name="id" id="quick-view-variant-id">
-                <button type="submit">Add to Cart</button>
-            </form>
+<div id="quick-view-modal" class="quick-view-drawer" hidden>
+    <div class="drawer-content">
+        <button class="drawer-close">×</button>
+
+        <div class="drawer-product">
+            <img id="quick-view-image" src="" alt="Product image" />
+            <div class="product-info">
+                <h2 id="quick-view-title">Product Name</h2>
+                <p id="quick-view-description">Short description</p>
+
+                <div class="product-tags">
+                    <span class="tag">GMO Free</span>
+                    <span class="tag">Gluten Free</span>
+                </div>
+
+                <!-- Tu tabla -->
+                <table class="variant-table">
+                    <thead>
+                    <tr>
+                        <th>Variant</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                    </thead>
+                    <tbody id="variant-table">
+                    <!-- JS inyecta filas acá -->
+                    </tbody>
+                </table>
+
+                <template id="variant-row-template">
+                    <tr>
+                        <td class="variant-col">
+                            <div class="variant-info">
+                                <img class="variant-image" src="" alt="">
+                                <div class="variant-title-group">
+                                    <strong class="variant-size"></strong><br>
+                                    <small class="variant-label"></small>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="variant-qty">
+                            <button class="qty-minus">−</button>
+                            <input type="number" value="0" min="0" class="variant-input"/>
+                            <button class="qty-plus">+</button>
+                        </td>
+                        <td class="variant-price"></td>
+                        <td class="variant-total">$0.00</td>
+                    </tr>
+                </template>
+
+
+
+
+                <div class="purchase-options">
+                    <label>
+                        <input type="radio" name="purchase_type" checked />
+                        One-Time Purchase
+                    </label>
+                    <label>
+                        <input type="radio" name="purchase_type" />
+                        Subscribe & Save
+                    </label>
+                </div>
+
+                <div class="quantity-controls">
+                    <button id="qty-minus">–</button>
+                    <input type="number" id="quick-view-qty" value="1" min="1" />
+                    <button id="qty-plus">+</button>
+                </div>
+
+                <form id="quick-view-form">
+                    <input type="hidden" name="id" id="quick-view-variant-id">
+                    <button type="submit" class="add-to-cart">Add to Cart – <span id="quick-view-price">$0.00</span></button>
+                </form>
+
+                <a href="#" id="view-full-details">View Full Details</a>
+            </div>
         </div>
     </div>
 </div>

@@ -1,28 +1,193 @@
-.quick-view-modal {
-    position: fixed; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 999;
-}
-
-.quick-view-modal.show {
-    opacity: 1;
-    pointer-events: all;
-}
-
-.quick-view-content {
+.quick-view-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
     background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
-    transform: scale(0.95);
-    transition: transform 0.3s ease;
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+    z-index: 50;
 }
 
-.quick-view-modal.show .quick-view-content {
-    transform: scale(1);
+.quick-view-drawer.show {
+    transform: translateX(0%);
+}
+
+.drawer-content {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.drawer-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    align-self: flex-end;
+    cursor: pointer;
+}
+
+.drawer-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    gap: 16px;
+}
+
+.drawer-product img {
+    height: 300px;
+    width: 300px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#quick-view-description, #quick-view-description p {
+    margin: 0;
+}
+
+.variant-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.variant-table thead th {
+    text-align: left;
+    font-weight: 600;
+    padding: 12px 8px;
+    color: #333;
+}
+
+.variant-table tbody td {
+    padding: 12px 8px;
+    vertical-align: middle;
+}
+
+/* --- Variant Info Cell --- */
+.variant-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.variant-info img {
+    border-radius: 6px;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.variant-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.variant-size {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.variant-label {
+    font-size: 12px;
+    color: #666;
+}
+
+/* --- Quantity Controls --- */
+.variant-qty {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 4px;
+}
+
+.variant-qty button {
+    background: none;
+    border: 1px solid #ccc;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.variant-qty button:hover {
+    background-color: #f0f0f0;
+}
+
+.variant-qty input[type="number"] {
+    width: 48px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    height: 32px;
+    font-size: 14px;
+    -moz-appearance: textfield;
+}
+
+.variant-qty input::-webkit-outer-spin-button,
+.variant-qty input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* --- Price & Total cells --- */
+.variant-price,
+.variant-total {
+    white-space: nowrap;
+    text-align: right;
+}
+
+.variant-total {
+    font-weight: 600;
+}
+
+/* --- Responsive: Optional simplification --- */
+@media (max-width: 600px) {
+    .variant-table {
+        font-size: 13px;
+    }
+
+    .variant-table thead {
+        display: none;
+    }
+
+    .variant-table tr {
+        display: block;
+        margin-bottom: 16px;
+        border: #e5e5e5 solid 1px;
+        border-bottom: 1px solid #eee;
+        padding: 12px 0;
+    }
+
+    .variant-table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 12px;
+    }
+
+    .variant-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #666;
+        margin-right: 12px;
+    }
+
+    .variant-qty {
+        justify-content: flex-end;
+        height: 100%;
+    }
 }
