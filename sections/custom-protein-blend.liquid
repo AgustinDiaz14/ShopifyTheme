@@ -166,43 +166,47 @@
             }
         }
 
+        handleTouchStart(e) {
+            if (window.innerWidth > 1024) return;
+            this.isDragging = true;
+            this.startX = e.touches[0].clientX;
+            this.track.style.transition = 'none';
+            this.prevTranslate = -this.currentIndex * this.track.offsetWidth;
+        }
+
+        handleTouchMove(e) {
+            if (!this.isDragging) return;
+            const deltaX = e.touches[0].clientX - this.startX;
+            this.currentTranslate = this.prevTranslate + deltaX;
+            this.track.style.transform = `translateX(${this.currentTranslate}px)`;
+        }
+
+        handleTouchEnd(e) {
+            if (!this.isDragging) return;
+            this.isDragging = false;
+            const movedBy = e.changedTouches[0].clientX - this.startX;
+
+            if (movedBy < -50 && this.currentIndex < this.total - 1) {
+                this.currentIndex++;
+            } else if (movedBy > 50 && this.currentIndex > 0) {
+                this.currentIndex--;
+            }
+
+            this.updateSlider();
+        }
+
+
         init() {
-            this.track.addEventListener('touchstart', (e) => {
-                if (window.innerWidth > 1024) return;
-                this.isDragging = true;
-                this.startX = e.touches[0].clientX;
-                this.track.style.transition = 'none';
-                this.prevTranslate = -this.currentIndex * this.track.offsetWidth;
-            });
+            this.cardElements = this.container.querySelectorAll('.blend-card');
 
-            this.track.addEventListener('touchmove', (e) => {
-                if (!this.isDragging) return;
-                const deltaX = e.touches[0].clientX - this.startX;
-                this.currentTranslate = this.prevTranslate + deltaX;
-                this.track.style.transform = `translateX(${this.currentTranslate}px)`;
-            });
-
-            this.track.addEventListener('touchend', (e) => {
-                if (!this.isDragging) return;
-                this.isDragging = false;
-                const movedBy = e.changedTouches[0].clientX - this.startX;
-
-                if (movedBy < -50 && this.currentIndex < this.total - 1) {
-                    this.currentIndex++;
-                } else if (movedBy > 50 && this.currentIndex > 0) {
-                    this.currentIndex--;
-                }
-
-                this.updateSlider();
-            });
-
-            this.track.addEventListener('touchcancel', () => {
-                if (this.isDragging) {
-                    this.isDragging = false;
-                    this.updateSlider();
-                }
+            this.cardElements.forEach(card => {
+                card.addEventListener('touchstart', this.handleTouchStart.bind(this));
+                card.addEventListener('touchmove', this.handleTouchMove.bind(this));
+                card.addEventListener('touchend', this.handleTouchEnd.bind(this));
+                card.addEventListener('touchcancel', this.handleTouchEnd.bind(this));
             });
         }
+
     }
 
     let blendSliderInstance;
