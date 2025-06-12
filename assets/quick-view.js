@@ -78,14 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             modal.classList.add('show');
-            modal.removeAttribute('hidden');
         });
     });
 
     // Close modal
     closeBtn.addEventListener('click', () => {
         modal.classList.remove('show');
-        setTimeout(() => modal.setAttribute('hidden', true), 300);
     });
 
     // Quantity controls
@@ -117,13 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Cerrar el modal y abrir el drawer
         modal.classList.remove('show');
-        setTimeout(() => modal.setAttribute('hidden', true), 300);
 
         if (typeof updateCartDrawer === 'function') {
             await updateCartDrawer();
             const cartDrawer = document.getElementById('cart-drawer');
             cartDrawer.classList.add('show');
-            cartDrawer.removeAttribute('hidden');
         }
     });
 
