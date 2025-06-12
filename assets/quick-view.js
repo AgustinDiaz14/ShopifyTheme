@@ -112,13 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const variantId = variantIdInput.value;
         const quantity = parseInt(qtyInput.value);
 
-        await fetch('/cart/add.js', {
+        //As non cart-drawer is implemented, cart icon will not be updated
+        await fetch('/cart/add', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({id: variantId, quantity})
         });
 
-        // Cerrar el modal y abrir el drawer
+        // Close modal
         modal.classList.remove('show');
 
         if (typeof updateCartDrawer === 'function') {
