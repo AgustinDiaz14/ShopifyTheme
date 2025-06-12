@@ -40,6 +40,10 @@
     display: block;
 }
 
+.mobile-product-info {
+    display: none;
+}
+
 .product-card__image img {
     width: 314px;
     height: 314px;
@@ -178,7 +182,23 @@
         max-width: 365px;
     }
 
+    .product-card__image img {
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+        margin-bottom: 16px;
+    }
+
     .desktop-product-info {
         display: none;
+    }
+
+    .mobile-product-info {
+        display: block;
+    }
+
+    .product-card__actions {
+        opacity: 1;
+        pointer-events: all;
     }
 }
