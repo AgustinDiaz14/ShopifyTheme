@@ -20,8 +20,20 @@ html, body {
     flex-direction: column;
 }
 
+.w-full {
+    width: 100%;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
 .items-center {
     align-items: center;
+}
+
+.items-start {
+    align-items: start;
 }
 
 .justify-center {

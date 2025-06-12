@@ -7,19 +7,59 @@
         {{ product.featured_image | image_url: width: 800 | image_tag: alt: product.title }}
     </div>
 
-    <div class="product-card__info">
+    <div class="desktop-product-info">
+        <div class="product-card__info">
 
-        <div class="tags-row">
-            {% for tag in product.tags %}
-                <p class="tag">{{ tag }}</p>
-            {% endfor %}
+            <div class="tags-row">
+                {% for tag in product.tags %}
+                    <p class="tag">{{ tag }}</p>
+                {% endfor %}
+            </div>
+
+            <h3 class="product-card__title">{{ product.title }}</h3>
+            <p class="product-description">{{ product.description | strip_html }}</p>
+            <div class="flex w-full justify-between items-center product-card__footer">
+                <div class="flex items-start">
+                    {{ 'black-star.svg' | asset_url | img_tag: width:24, height:24 }}
+                    {{ 'black-star.svg' | asset_url | img_tag: width:24, height:24 }}
+                    {{ 'black-star.svg' | asset_url | img_tag: width:24, height:24 }}
+                    {{ 'black-star.svg' | asset_url | img_tag: width:24, height:24 }}
+                    {{ 'black-star.svg' | asset_url | img_tag: width:24, height:24 }}
+                </div>
+                <button>Add • {{ product.price | money_without_currency }}</button>
+            </div>
         </div>
 
-        <h3>{{ product.title }}</h3>
-    </div>
+        <div class="product-card__actions">
+            {% comment %}As I am not sure of this implementation based on the design, I just hardcoded it{% endcomment %}
+            <div class="product-card__purchase-options">
+                <div class="option-container">
+                    <div class="flex flex-column">
+                        <label>
+                            <input type="radio" name="purchase_type_{{ product.id }}" />
+                            One-Time Purchase
+                        </label>
+                        <p class="product-card__price-text">$49.95</p>
+                    </div>
+                </div>
+                <div class="option-container">
+                    <div class="flex flex-column">
+                        <label>
+                            <input type="radio" name="purchase_type_{{ product.id }}" />
+                            Subscribe & Save
+                        </label>
+                        <div class="flex items-center justify-center">
+                            <p class="product-card__price-text">$39.96</p>
+                            <p class="product-card__discount-text">Save 10%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <button
-        data-quick-view="{{ product.handle }}"
-        data-product={{ product }}
-    >Quick View</button>
+            <button class="product-card__add-to-cart" data-quick-view="{{ product.handle }}"
+                    data-product={{ product }}>Add to cart - ${{ product.price | money_without_currency }}</button>
+            {% comment %}Ass it is not design a products page, I am not implementing this button{% endcomment %}
+            <button class="product-card__view-all-button" disabled>View Full Details</button>
+        </div>
+    </div>
 </div>
