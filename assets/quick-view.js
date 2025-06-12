@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const priceOutput = document.getElementById('quick-view-price');
     const variantIdInput = document.getElementById('quick-view-variant-id');
 
+    let totalQuantity = 1;
+
+    let totalPrice = {};
+
     let selectedVariant = null;
 
     // Open modal from any product
@@ -69,6 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const qty = parseInt(input.value);
                 const total = (variant.price / 100) * qty;
                 totalElement.textContent = `$${total.toFixed(2)}`;
+                totalPrice[variant.id] = total.toFixed(2);
+                updateQuickViewTotal();
             }
 
 
@@ -86,21 +92,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Quantity controls
     document.getElementById('qty-minus').addEventListener('click', () => {
+        console.log("Clicked minus button");
         qtyInput.value = Math.max(1, parseInt(qtyInput.value) - 1);
-        updatePriceDisplay();
+        totalQuantity = Math.max(1, parseInt(qtyInput.value));
+        updateQuickViewTotal()
     });
 
     document.getElementById('qty-plus').addEventListener('click', () => {
+        console.log("Clicked plus button");
         qtyInput.value = parseInt(qtyInput.value) + 1;
-        updatePriceDisplay();
+        totalQuantity = parseInt(qtyInput.value);
+        updateQuickViewTotal()
     });
-
-    function updatePriceDisplay() {
-        if (!selectedVariant) return;
-        const qty = parseInt(qtyInput.value);
-        const total = (selectedVariant.price / 100) * qty;
-        priceOutput.textContent = `$${total.toFixed(2)}`;
-    }
 
     // Add to cart
     form.addEventListener('submit', async (e) => {
@@ -149,8 +152,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    function updateQuickViewTotal() {
+        const total = Object.values(totalPrice)
+            .reduce((sum, price) => sum + parseFloat(price), 0);
+        document.getElementById('quick-view-price').textContent = `$${total > 0 ? (total * totalQuantity).toFixed(2) : `0.00`}`;
+    }
+
+
     function updateLineTotal(variantId, qty) {
-        const variant = product.variants.find(v => v.id == variantId);
+        const variant = product.variants.find(v => v.id === variantId);
         const total = (variant.price / 100) * qty;
         document.getElementById(`line-total-${variantId}`).textContent = `$${total.toFixed(2)}`;
     }

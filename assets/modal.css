@@ -92,12 +92,6 @@
     object-fit: contain;
 }
 
-.variant-title-group {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-}
-
 .variant-size {
     font-weight: 600;
     font-size: 14px;
@@ -126,6 +120,7 @@
     line-height: 1;
     cursor: pointer;
     transition: background-color 0.2s ease;
+    color: black;
 }
 
 .variant-qty button:hover {
@@ -159,7 +154,99 @@
     font-weight: 600;
 }
 
-/* --- Responsive: Optional simplification --- */
+/* --- Purchase Options --- */
+.purchase-options {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.purchase-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.purchase-options input[type="radio"] {
+    accent-color: black;
+    cursor: pointer;
+}
+
+/* --- Quantity Controls --- */
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.quantity-controls button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.quantity-controls button:hover {
+    background: #e0e0e0;
+}
+
+.quantity-controls input[type="number"] {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    height: 32px;
+    font-size: 14px;
+}
+
+/* --- Add to Cart Button --- */
+#quick-view-form {
+    margin-top: 20px;
+}
+
+#quick-view-form .add-to-cart {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#quick-view-form .add-to-cart:hover {
+    background-color: #333;
+}
+
+/* --- View Full Details Link --- */
+#view-full-details {
+    display: inline-block;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #555;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+#view-full-details:hover {
+    color: black;
+}
+
+
+/* --- Responsive --- */
 @media (max-width: 600px) {
     .variant-table {
         font-size: 13px;
