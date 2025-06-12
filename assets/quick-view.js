@@ -24,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const template = document.getElementById('variant-row-template');
             const variantQuantities = {};
 
+            const tbody = document.getElementById('variant-table');
+            tbody.innerHTML = '';
+
             product.variants.forEach(variant => {
                 variantQuantities[variant.id] = 0;
 
@@ -31,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const row = clone.querySelector('tr');
 
                 const match = variant.title.split("/")
-                console.log(match)
                 const capsuleTitle = match ? match[1] : '';
                 const capsuleLabel = match ? match[0] : '';
 

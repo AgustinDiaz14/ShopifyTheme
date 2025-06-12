@@ -62,6 +62,10 @@
     font-size: 14px;
 }
 
+.variant-table thead {
+    border-bottom: #e5e5e5 solid 1px;
+}
+
 .variant-table thead th {
     text-align: left;
     font-weight: 600;
@@ -168,8 +172,6 @@
     .variant-table tr {
         display: block;
         margin-bottom: 16px;
-        border: #e5e5e5 solid 1px;
-        border-bottom: 1px solid #eee;
         padding: 12px 0;
     }
 
