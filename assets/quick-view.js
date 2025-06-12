@@ -94,6 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
         updateQuickViewTotal()
     });
 
+    qtyInput.addEventListener("input", (e) => {
+        console.log("On change input");
+        totalQuantity = e.target.value;
+    })
+
     document.getElementById('qty-plus').addEventListener('click', () => {
         console.log("Clicked plus button");
         qtyInput.value = parseInt(qtyInput.value) + 1;

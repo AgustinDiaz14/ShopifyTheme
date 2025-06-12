@@ -77,16 +77,18 @@
                     </div>
                 </div>
 
-                <div class="quantity-controls">
-                    <button id="qty-minus">–</button>
-                    <input type="number" id="quick-view-qty" value="1" min="1" />
-                    <button id="qty-plus">+</button>
-                </div>
+                <div class="add-to-cart-button-container flex">
+                    <div class="quantity-controls">
+                        <button id="qty-minus">–</button>
+                        <input type="number" id="quick-view-qty" value="1" min="1" />
+                        <button id="qty-plus">+</button>
+                    </div>
 
-                <form id="quick-view-form">
-                    <input type="hidden" name="id" id="quick-view-variant-id">
-                    <button type="submit" class="add-to-cart">Add to Cart – <span id="quick-view-price">$0.00</span></button>
-                </form>
+                    <form id="quick-view-form">
+                        <input type="hidden" name="id" id="quick-view-variant-id">
+                        <button type="submit" class="add-to-cart">Add to Cart – <span id="quick-view-price">$0.00</span></button>
+                    </form>
+                </div>
 
                 <a href="#" id="view-full-details">View Full Details</a>
             </div>
