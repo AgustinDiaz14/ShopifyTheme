@@ -1,3 +1,10 @@
+/*Just for de IDE warnings, this variables will be set dynamically*/
+
+:root {
+    --scroll-width: 0px;
+    --scroll-duration: 0s;
+}
+
 .hero-video {
     position: relative;
     width: 100%;
@@ -90,7 +97,7 @@
     padding: 0;
     width: fit-content;
     animation: marquee-scroll linear infinite;
-    --scroll-width: 1000px;
+    animation-duration: var(--scroll-duration, 20s);
 }
 
 .marquee__item {
@@ -110,7 +117,7 @@
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc(-1 * var(--scroll-width)));
+        transform: translateX(calc(-1 * var(--scroll-width, 1000px))); /* valor por defecto */
     }
 }
 
