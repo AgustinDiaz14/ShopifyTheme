@@ -74,6 +74,8 @@ Once uploaded:
 ### 5. **Video Controls**
 - Custom video controls were not implemented as per the design request are not clear. I stick to the given design placing an autoplaying video but muted.
 
+### 6. **Locales**
+- The theme supports multiple languages via Shopify's built-in locale system. It supports translations for all static text elements, ensuring a global reach.
 ---
 
 ## 🧰 Framework & Libraries
