@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     videos.forEach((video, i) => {
-        video.onended = () => handleVideoEnded(i);
+        video.addEventListener("ended", () => handleVideoEnded(i));
     });
 
     window.addEventListener("load", () => {
