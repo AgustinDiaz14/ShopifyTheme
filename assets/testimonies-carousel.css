@@ -1,0 +1,188 @@
+.testimonial-carousel {
+    padding: 4rem 0;
+    background-color: #F6F6F5;
+}
+
+.carousel-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.carousel-text {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.carousel-header-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.carousel-header .subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.carousel-header .title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.view-all-link {
+    margin-top: 18px;
+}
+
+.carousel-track {
+    display: flex;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 20px;
+}
+
+.carousel-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.carousel-track {
+    pointer-events: none;
+}
+
+.carousel-track > .testimonial-product-info {
+    pointer-events: auto;
+}
+
+
+.testimonial-card {
+    flex: 0 0 auto;
+    width: 300px;
+    scroll-snap-align: start;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonial-card .media {
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: black;
+}
+
+.testimonial-card {
+    width: 300px;
+    border-radius: 8px;
+    overflow: visible;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.testimonial-card-inner {
+    border-radius: 8px;
+    width: 100%;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card.active .testimonial-card-inner {
+    transform: scale(1.1);
+    z-index: 1;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.2);
+    outline: none;
+    border: none;
+}
+
+.testimonial-card.active .testimonial-product-info {
+    transform: scale(1.1) translateY(1rem);
+}
+
+.testimonial-card video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: black;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+}
+
+.testimonial-product-info {
+    margin-top: 16px;
+    background: white;
+    height: auto;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.product-image-container {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-right: 1rem;
+    background-color: #F6F6F5;
+}
+
+.product-data-container {
+    flex: 1;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.product-data-container p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.testimonial-product-info img {
+    width: 50px;
+    height: 50px;
+}
+
+.testimonial-product-info button {
+    background: black;
+    font-weight: lighter;
+    border: none;
+    font-size: x-large;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    border-radius: calc(infinity * 1px);
+    width: 32px;
+    height: 32px;
+}

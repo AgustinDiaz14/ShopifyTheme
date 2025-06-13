@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "color",
+        "id": "primary_color",
+        "label": "Primary color",
+        "default": "#ff6347"
+      }
+    ]
+  }
+]

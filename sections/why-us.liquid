@@ -1,0 +1,70 @@
+<section class="why-us-section">
+    <div class="section-header">
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="title">{{ section.settings.heading }}</h2>
+    </div>
+
+    <div class="attributes-grid">
+        {% for block in section.blocks %}
+            <div class="attribute-item">
+                <div class="icon-wrapper">
+                    <img src="{{ block.settings.icon | image_url }}" alt="icon" loading="lazy" />
+                </div>
+                <h3>{{ block.settings.title }}</h3>
+                <p>{{ block.settings.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why us",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "🌝 Why Health & Fitness"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading",
+      "default": "Clean Supplements – Made For You"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "attribute",
+      "name": "Attribute",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "We Make It Easy"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Personalized Solutions & Guidance Mean You Get Just What You Need Nothing More"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Why Health & Fitness",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

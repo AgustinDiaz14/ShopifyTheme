@@ -1,0 +1,84 @@
+<section class="flex items-center justify-center bg-white promotional-banner-container">
+    <div class="hero-banner-section" style="background-image: url({{ section.settings.background_image | image_url: width: 1600 }});">
+        <div class="hero-overlay flex items-center" style="background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});">
+            <div class="hero-content">
+                <h1>{{ section.settings.title }}</h1>
+                <p>{{ section.settings.subtitle }}</p>
+                <div class="hero-buttons">
+                    {% if section.settings.button_1_text != blank %}
+                        <a href="{{ section.settings.button_1_link }}" class="btn-primary">{{ section.settings.button_1_text }}</a>
+                    {% endif %}
+                    {% if section.settings.button_2_text != blank %}
+                        <a href="{{ section.settings.button_2_link }}" class="btn-secondary">{{ section.settings.button_2_text }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "hero-banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 40
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The Next Generation is Here"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Innovative Engineering. Intelligent Design. Meet The Plunge All-I."
+    },
+    {
+      "type": "text",
+      "id": "button_1_text",
+      "label": "Button 1 Text",
+      "default": "Take The Plunge"
+    },
+    {
+      "type": "url",
+      "id": "button_1_link",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_text",
+      "label": "Button 2 Text",
+      "default": "Dive Deeper"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "Button 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

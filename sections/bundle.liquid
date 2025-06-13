@@ -1,0 +1,118 @@
+<section class="bundle-products-section">
+    <div class="container">
+
+        <div class="slider-header">
+            <div class="bundle-slider-title-container">
+                <p>{{ 'bundle.title_icon' | t }}</p>
+                <h2>{{ 'bundle.title_heading' | t }}</h2>
+            </div>
+
+            <div class="bundle-collection-container">
+                {% for block in section.blocks %}
+                    {% assign collection = block.settings.collection %}
+                    <a href="{{ block.settings.link }}" target="_blank" class="bundle-nav-link">{{ collection.title }}</a>
+                {% endfor %}
+            </div>
+
+            <div class="bundle-slider-nav">
+                <a href="#">{{ 'bundle.view_all' | t }}</a>
+                <button class="slider-arrow" data-direction="prev" aria-label="{{ 'bundle.slider_prev_aria' | t }}">
+                    {{ 'left-arrow.svg' | asset_url | img_tag }}
+                </button>
+                <button class="slider-arrow" data-direction="next" aria-label="{{ 'bundle.slider_next_aria' | t }}">
+                    {{ 'right-arrow.svg' | asset_url | img_tag }}
+                </button>
+            </div>
+        </div>
+
+        {% for block in section.blocks %}
+            {% assign collection = block.settings.collection %}
+            <div class="bundle-collection-section" data-title="{{ collection.title | escape }}">
+                <div class="bundle-products-grid">
+                    {% for i in (1..4) %}
+                        {% assign product_id = 'bundle_product_' | append: i %}
+                        {% assign badge_id = 'bundle_badge_' | append: i %}
+                        {% assign handle = block.settings[product_id] %}
+                        {% assign badge = block.settings[badge_id] %}
+
+                        {% if handle != blank %}
+                            {% assign product = all_products[handle] %}
+
+                            {% if product %}
+                                {% render 'product-card',
+                                        product: product,
+                                        badge: badge %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bundle Products",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Products",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Choose collection"
+        },
+        {
+          "type": "product",
+          "id": "bundle_product_1",
+          "label": "Product 1"
+        },
+        {
+          "type": "text",
+          "id": "bundle_badge_1",
+          "label": "Badge for Product 1"
+        },
+        {
+          "type": "product",
+          "id": "bundle_product_2",
+          "label": "Product 2"
+        },
+        {
+          "type": "text",
+          "id": "bundle_badge_2",
+          "label": "Badge for Product 2"
+        },
+        {
+          "type": "product",
+          "id": "bundle_product_3",
+          "label": "Product 3"
+        },
+        {
+          "type": "text",
+          "id": "bundle_badge_3",
+          "label": "Badge for Product 3"
+        },
+        {
+          "type": "product",
+          "id": "bundle_product_4",
+          "label": "Product 4"
+        },
+        {
+          "type": "text",
+          "id": "bundle_badge_4",
+          "label": "Badge for Product 4"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trending Products",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ request.locale }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ shop.name }}</title>
+    {{ content_for_header }}
+    <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'header.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'hero_video.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'review-strip.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'goals.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'trending-products.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'product-card.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'why-us.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'testimonies-carousel.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'bundle.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'custom-protein-blend.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'promotional-banner.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'blogs.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'promotional-gallery.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'modal.css' | asset_url }}">
+    <link rel="stylesheet" href="{{ 'footer.css' | asset_url }}">
+
+</head>
+<body>
+
+{% section 'header' %}
+
+{{ content_for_layout }}
+{{ 'quick-view.js' | asset_url | script_tag }}
+{% render 'modal' %}
+
+{% section 'footer' %}
+</body>
+</html>

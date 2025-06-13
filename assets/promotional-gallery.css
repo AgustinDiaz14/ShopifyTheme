@@ -1,0 +1,90 @@
+.promotional-gallery {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+.gallery-social-network {
+    grid-column: span 2;
+    height: 100%;
+    border-radius: 8px;
+    width: 100%;
+    background-color: #F6F6F5;
+}
+
+.social-network-header {
+    gap: 16px;
+}
+
+.social-network-header p {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+}
+
+.social-network-logo {
+    height: 60px;
+    width: 60px;
+}
+
+.gallery-social-network a {
+    background-color: white;
+    border: none;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    outline: black solid 1px;
+    padding: 13px 41px 13px 41px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.gallery-item {
+    border-radius: 8px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .gallery-social-network {
+        padding: 10px;
+        box-sizing: border-box;
+        grid-column: span 1;
+    }
+
+    .social-network-header p {
+        font-size: 18px;
+    }
+
+    .social-network-logo {
+        height: 50px;
+        width: 50px;
+    }
+
+    .gallery-social-network a {
+        padding: 10px 30px;
+        font-size: 12px;
+    }
+
+
+}

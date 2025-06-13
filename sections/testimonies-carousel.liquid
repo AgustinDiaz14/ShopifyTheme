@@ -1,0 +1,79 @@
+{{ 'testimonies-carousel.js' | asset_url | script_tag }}
+
+<section class="testimonial-carousel">
+    <div class="container">
+        <div class="carousel-header">
+            <div class="carousel-header-nav">
+                <button class="slider-arrow" onclick="goToPrev()">{{ 'left-arrow.svg' | asset_url | img_tag }}</button>
+                <div class="carousel-text">
+                    <p class="subtitle">{{ section.settings.subtitle }}</p>
+                    <h2 class="title">{{ section.settings.title }}</h2>
+                </div>
+                <button class="slider-arrow" onclick="goToNext()">{{ 'right-arrow.svg' | asset_url | img_tag }}</button>
+            </div>
+
+            <a href="{{ section.settings.view_all_link }}" class="view-all-link">View All</a>
+        </div>
+
+        <div class="carousel-wrapper">
+            <div class="carousel-track">
+                {% for block in section.blocks %}
+                    <div class="testimonial-card">
+                        <div class="testimonial-card-inner">
+                            {% if block.settings.media %}
+                                <div class="media">
+                                    {{ block.settings.media | video_tag: autoplay:true, preview: true, loop: true, muted: true, controls: false, preload: "auto" }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="testimonial-product-info">
+                            {% if block.settings.product %}
+                                {% assign product = all_products[block.settings.product] %}
+                                <div class="product-image-container">
+                                    <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title }}">
+                                </div>
+                                <div class="product-data-container">
+                                    <p>{{ product.title }}</p>
+                                    <p class="bold">{{ product.price | money }}</p>
+                                </div>
+                                {% comment %}As not specidied in design, this buttons remains IDLE. Maybe an auxiliar modal could be usefull{% endcomment %}
+                                <button>+</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Testimonial Carousel",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Trusted & Proven by Science" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Real People. Real Results." },
+    { "type": "url", "id": "view_all_link", "label": "View All link" }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "video", "id": "media", "label": "Image or Video" },
+        { "type": "product", "id": "product", "label": "Related product" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Testimonial Carousel",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

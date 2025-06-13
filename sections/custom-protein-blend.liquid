@@ -1,0 +1,289 @@
+<section class="custom-protein-section">
+    <div class="text-center flex-column custom-protein-header">
+        <p>{{ 'protein.section_subtitle' | t }}</p>
+        <h2 class="title">{{ 'protein.section_title' | t }}</h2>
+    </div>
+    <div class="navigation-blend-wrapper">
+        <button class="slider-button prev" onclick="blendSliderInstance.goPrev()" aria-label="{{ 'protein.slider_prev_aria' | t }}">
+            {{ 'left-arrow.svg' | asset_url | img_tag }}
+        </button>
+        <div class="blend-slider-wrapper">
+            <div class="blend-slider-track">
+                {% for block in section.blocks %}
+                    {% if block.type == 'product_block' and block.settings.product != blank %}
+                        {% assign prod = all_products[block.settings.product] %}
+                        <div class="blend-box">
+                            <div class="blend-card">
+                                <div class="blend-image">
+                                    {% if prod.featured_image != blank %}
+                                        <img src="{{ prod.featured_image | image_url }}" alt="{{ prod.title }}">
+                                    {% endif %}
+                                </div>
+
+                                <div class="blend-info-container">
+                                    <div class="flex-column ingredients-container bg-black">
+                                        <h3 class="white-text">The Blend</h3>
+                                        <div class="blend-ingredients">
+                                            {% if block.settings.title_1 != blank %}
+                                                <div class="subsection">
+                                                    <div class="leaf-container white-leaf">
+                                                        {{ 'leaves.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                                    </div>
+
+                                                    <h4 class="white-text">{{ block.settings.title_1 }}</h4>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if block.settings.title_2 != blank %}
+                                                <div class="subsection">
+                                                    <div class="leaf-container white-leaf">
+                                                        {{ 'leaves.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                                    </div>
+                                                    <h4 class="white-text">{{ block.settings.title_2 }}</h4>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if block.settings.title_3 != blank %}
+                                                <div class="subsection">
+                                                    <div class="leaf-container white-leaf">
+                                                        {{ 'leaves.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                                    </div>
+                                                    <h4 class="white-text">{{ block.settings.title_3 }}</h4>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="blend-description">
+                                        {% if block.settings. description_1 != blank%}
+                                            <div class="description-subsection">
+                                                <div class="leaf-container black-leaf">
+                                                    {{ 'leaves-black.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                                </div>
+                                                <p class="description-text">{{ block.settings.description_1 }}</p>
+                                            </div>
+
+                                        {% endif %}
+
+                                        {% if block.settings.description_2 != blank %}
+                                            <div class="description-subsection">
+                                                <div class="leaf-container black-leaf">
+                                                    {{ 'leaves-black.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                                </div>
+                                                <p class="description-text">{{ block.settings.description_2 }}</p>
+                                            </div>
+                                        {% endif %}
+
+                                        {% if block.settings.description_3 != blank %}
+                                            <div class="description-subsection">
+                                                <div class="leaf-container black-leaf">
+                                                    {{ 'leaves-black.svg' | asset_url | img_tag: width: 24, height: 24}}
+                                                </div>
+                                                <p class="description-text">{{ block.settings.description_3 }}</p>
+                                            </div>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <button class="slider-button next" onclick="blendSliderInstance.goNext()" aria-label="{{ 'protein.slider_next_aria' | t }}">
+            {{ 'right-arrow.svg' | asset_url | img_tag }}
+        </button>
+    </div>
+
+
+</section>
+
+<script>
+    class BlendSlider {
+        constructor(selector) {
+            this.container = document.querySelector(selector);
+            this.track = this.container.querySelector('.blend-slider-track');
+            this.boxes = this.container.querySelectorAll('.blend-box');
+            this.total = this.boxes.length;
+            this.currentIndex = 0;
+            this.isDragging = false;
+            this.startX = 0;
+            this.currentTranslate = 0;
+            this.prevTranslate = 0;
+            this.dotsContainer = null;
+
+            if (this.total <= 1) {
+                this.hideControls();
+                return;
+            }
+
+            this.createDots();
+            this.init();
+        }
+
+        hideControls() {
+            const buttons = this.container.querySelectorAll('.slider-button');
+            buttons.forEach(btn => btn.style.display = 'none');
+        }
+
+        createDots() {
+            this.dotsContainer = document.createElement('div');
+            this.dotsContainer.className = 'slider-dots';
+
+            for (let i = 0; i < this.total; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                if (i === this.currentIndex) dot.classList.add('active');
+                this.dotsContainer.appendChild(dot);
+            }
+
+            this.container.appendChild(this.dotsContainer);
+        }
+
+        updateDots() {
+            if (!this.dotsContainer) return;
+            const dots = this.dotsContainer.querySelectorAll('.dot');
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[this.currentIndex].classList.add('active');
+        }
+
+        updateSlider() {
+            this.track.style.transition = 'transform 0.4s ease';
+            this.track.style.transform = `translateX(-${this.currentIndex * 100}%)`;
+            this.prevTranslate = -this.currentIndex * this.track.offsetWidth;
+            this.updateDots();
+        }
+
+        goPrev() {
+            if (this.currentIndex > 0) {
+                this.currentIndex--;
+                this.updateSlider();
+            }
+        }
+
+        goNext() {
+            console.log("Next clicked")
+            if (this.currentIndex < this.total - 1) {
+                this.currentIndex++;
+                this.updateSlider();
+            }
+        }
+
+        handleTouchStart(e) {
+            if (window.innerWidth > 1024) return;
+            this.isDragging = true;
+            this.startX = e.touches[0].clientX;
+            this.track.style.transition = 'none';
+            this.prevTranslate = -this.currentIndex * this.track.offsetWidth;
+        }
+
+        handleTouchMove(e) {
+            if (!this.isDragging) return;
+            const deltaX = e.touches[0].clientX - this.startX;
+            this.currentTranslate = this.prevTranslate + deltaX;
+            this.track.style.transform = `translateX(${this.currentTranslate}px)`;
+        }
+
+        handleTouchEnd(e) {
+            if (!this.isDragging) return;
+            this.isDragging = false;
+            const movedBy = e.changedTouches[0].clientX - this.startX;
+
+            if (movedBy < -50 && this.currentIndex < this.total - 1) {
+                this.currentIndex++;
+            } else if (movedBy > 50 && this.currentIndex > 0) {
+                this.currentIndex--;
+            }
+
+            this.updateSlider();
+        }
+
+
+        init() {
+            this.cardElements = this.container.querySelectorAll('.blend-card');
+
+            this.cardElements.forEach(card => {
+                card.addEventListener('touchstart', this.handleTouchStart.bind(this));
+                card.addEventListener('touchmove', this.handleTouchMove.bind(this));
+                card.addEventListener('touchend', this.handleTouchEnd.bind(this));
+                card.addEventListener('touchcancel', this.handleTouchEnd.bind(this));
+            });
+        }
+
+    }
+
+    let blendSliderInstance;
+    document.addEventListener('DOMContentLoaded', function () {
+        blendSliderInstance = new BlendSlider('.blend-slider-wrapper');
+    });
+</script>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Custom Protein Blend",
+  "tag": "section",
+  "class": "custom-protein-section-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Customized Protein Powder"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_block",
+      "name": "Product Block",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "title_1",
+          "label": "Title 1"
+        },
+        {
+          "type": "textarea",
+          "id": "description_1",
+          "label": "Description 1"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Title 2"
+        },
+        {
+          "type": "textarea",
+          "id": "description_2",
+          "label": "Description 2"
+        },
+        {
+          "type": "text",
+          "id": "title_3",
+          "label": "Title 3"
+        },
+        {
+          "type": "textarea",
+          "id": "description_3",
+          "label": "Description 3"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Protein Blend",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
